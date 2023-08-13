@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   Deploy1:
-    name: "Deploy Job"
+    name: "Deploy1 Job"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -23,7 +23,7 @@ jobs:
           script: |
             ls -al
   Deploy2:
-    name: "Deploy Job"
+    name: "Deploy2 Job"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -40,7 +40,7 @@ jobs:
           script: |
             ls -al
   Deploy3:
-    name: "Deploy Job"
+    name: "Deploy3 Job"
     runs-on: ubuntu-latest
     permissions:
       contents: read
