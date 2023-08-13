@@ -5,7 +5,7 @@ on:
   #    - main
   workflow_dispatch:
 jobs:
-  Deploy:
+  Deploy1:
     name: "Deploy Job"
     runs-on: ubuntu-latest
     permissions:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Exe isu1
+      - name: Exe
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ vars.HOST1 }}
@@ -21,5 +21,38 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            whoami
+            ls -al
+  Deploy2:
+    name: "Deploy Job"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Exe
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ vars.HOST2 }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            ls -al
+  Deploy3:
+    name: "Deploy Job"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Exe
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ vars.HOST3 }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
             ls -al

@@ -7,13 +7,13 @@
   tasks:
     #- import_tasks : ../tasks/monitoring/fluent-bit.yml
     #- import_tasks : ../tasks/monitoring/node_exporter.yml
-    #- import_tasks : ../tasks/tasks_for_isu/all-close.yml
     #- import_tasks : ../tasks/tasks_for_isu/alp.yml
-    #- import_tasks : ../tasks/tasks_for_isu/mysql.yml
-    #- import_tasks : ../tasks/tasks_for_isu/netdata.yml
+    #- import_tasks : ../tasks/tasks_for_isu/graphviz.yml
+    - import_tasks : ../tasks/tasks_for_isu/mysql.yml
+    - import_tasks : ../tasks/tasks_for_isu/netdata.yml
     #- import_tasks : ../tasks/tasks_for_isu/nginx.yml
-    #- import_tasks : ../tasks/tasks_for_isu/other-tools.yml
-    #- import_tasks : ../tasks/tasks_for_isu/parameter.yml
+    - import_tasks : ../tasks/tasks_for_isu/parameter.yml
+    - import_tasks : ../tasks/tasks_for_isu/percona.yml
     #- import_tasks : ../tasks/tasks_for_isu/redis.yml
 
 - name: isu
@@ -22,5 +22,5 @@
   user: isucon
   max_fail_percentage: 0
   tasks:
-    #- import_tasks : ../tasks/isu/isu_deploy.yml
-    #- import_tasks : ../tasks/isu/isu_add.yml
+    - import_tasks : ../tasks/isu/isu_deploy.yml
+    - import_tasks : ../tasks/isu/isu_add.yml

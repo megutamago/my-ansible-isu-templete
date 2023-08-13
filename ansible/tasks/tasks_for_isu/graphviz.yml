@@ -2,4 +2,3 @@
   apt:
     name:
     - graphviz
-    - percona-toolkit
