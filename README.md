@@ -1,8 +1,8 @@
 # my-ansible-isu-templete
 
 ## ISUCON my templete
-webapp:
-  ref: private-isu
+webapp:  
+  ref: private-isu  
 
 ### shell
 ```
