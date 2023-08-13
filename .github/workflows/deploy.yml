@@ -16,7 +16,7 @@ jobs:
       - name: Exe isu1
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ variables.HOST1 }}
+          host: ${{ vars.HOST1 }}
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22

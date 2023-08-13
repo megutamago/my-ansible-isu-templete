@@ -21,6 +21,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           inventory: |
             [isu1]
-            ${{ variables.HOST1 }}
+            ${{ vars.HOST1 }}
           options: |
             --inventory .hosts
