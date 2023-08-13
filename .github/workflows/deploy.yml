@@ -1,0 +1,25 @@
+name: 'Deploy'
+on:
+  #push:
+  #  branches:
+  #    - main
+  workflow_dispatch:
+jobs:
+  Deploy:
+    name: "Deploy Job"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Exe isu1
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ variables.HOST1 }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            whoami
+            ls -al

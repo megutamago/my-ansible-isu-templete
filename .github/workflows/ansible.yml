@@ -16,11 +16,11 @@ jobs:
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: deploy.yml
+          playbook: site.yml
           directory: ./ansible
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           inventory: |
             [isu1]
-            9.9.9.9
+            ${{ variables.HOST1 }}
           options: |
             --inventory .hosts
