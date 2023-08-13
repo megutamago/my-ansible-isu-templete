@@ -35,11 +35,11 @@ jobs:
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: playbooks/isu1.yml
+          playbook: playbooks/isu2.yml
           directory: ./ansible
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           inventory: |
-            [isu1]
+            [isu2]
             ${{ vars.HOST2 }}
           options: |
             --inventory .hosts
@@ -54,11 +54,11 @@ jobs:
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: playbooks/isu1.yml
+          playbook: playbooks/isu3.yml
           directory: ./ansible
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           inventory: |
-            [isu1]
+            [isu3]
             ${{ vars.HOST3 }}
           options: |
             --inventory .hosts
