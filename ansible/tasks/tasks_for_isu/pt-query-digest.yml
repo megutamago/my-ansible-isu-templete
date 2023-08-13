@@ -1,4 +1,0 @@
-- name: Install the package
-  apt:
-    name:
-    - percona-toolkit
