@@ -1,12 +1,12 @@
-name: 'Deploy'
+name: 'Shell'
 on:
   #push:
   #  branches:
   #    - main
   workflow_dispatch:
 jobs:
-  Deploy1:
-    name: "Deploy1 Job"
+  Shell1:
+    name: "Shell1 Job"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -22,8 +22,8 @@ jobs:
           port: 22
           script: |
             ls -al
-  Deploy2:
-    name: "Deploy2 Job"
+  Shell2:
+    name: "Shell2 Job"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -39,8 +39,8 @@ jobs:
           port: 22
           script: |
             ls -al
-  Deploy3:
-    name: "Deploy3 Job"
+  Shell3:
+    name: "Shell3 Job"
     runs-on: ubuntu-latest
     permissions:
       contents: read
