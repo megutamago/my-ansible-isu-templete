@@ -23,7 +23,7 @@ rm -f /tmp/webapp.tar.gz
 rm -f /tmp/isuconp.dump.sql.gz
 ```
 
-<br>
+---
 
 ### pprof
 ```
@@ -40,7 +40,7 @@ ssh -fN -L 0.0.0.0:1080:localhost:1080 192.168.11.41
 http://192.168.11.21:1080/
 ```
 
-<br>
+---
 
 ### alp
 ```
@@ -49,7 +49,7 @@ cat /var/log/nginx/access.log \
 --sort avg -r -o count,1xx,2xx,3xx,4xx,5xx,min,max,avg,sum,p99,method,uri
 ```
 
-<br>
+---
 
 ### pt-query-digest
 ```
@@ -57,7 +57,7 @@ cat /var/log/mysql/mysql-slow.sql | grep -v "INSERT INTO \`posts\`" > /var/log/m
 pt-query-digest /var/log/mysql/mysql-slow.sql
 ```
 
-<br>
+---
 
 ### unarchive
 ``` 
