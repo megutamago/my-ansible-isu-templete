@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   Ansible1:
-    name: "Ansible Job"
+    name: "Ansible1 Job"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -25,7 +25,7 @@ jobs:
           options: |
             --inventory .hosts
   Ansible2:
-    name: "Ansible Job"
+    name: "Ansible2 Job"
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -44,7 +44,7 @@ jobs:
           options: |
             --inventory .hosts
   Ansible3:
-    name: "Ansible Job"
+    name: "Ansible3 Job"
     runs-on: ubuntu-latest
     permissions:
       contents: read
