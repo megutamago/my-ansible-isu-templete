@@ -2,7 +2,6 @@
 
 ### shell
 ```
-
 # archive
 tar zcvfp /tmp/webapp.tar.gz /home/isucon/private_isu/webapp
 
@@ -17,14 +16,12 @@ scp ubuntu@x.x.x.x:/etc/nginx/nginx.conf ./
 # remove
 rm -f /tmp/webapp.tar.gz
 rm -f /tmp/isuconp.dump.sql.gz
-
 ```
 
 ### bench
 ```
 # bench (user:isucon)
 /home/isucon/private_isu.git/benchmarker/bin/benchmarker -u /home/isucon/private_isu.git/benchmarker/userdata -t http://192.168.11.41
-
 ```
 
 ### collect
@@ -95,5 +92,4 @@ scp ubuntu@x.x.x.x:/tmp/result.txt ./
 
 # remove
 rm -f /tmp/pattern.txt /tmp/systemd-info.txt /tmp/result.txt
-
 ```
