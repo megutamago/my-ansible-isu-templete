@@ -31,6 +31,8 @@
   copy:
     src: /home/isucon/my-ansible-isu-templete/webapp
     dest: /home/isucon/private_isu/
+    owner: isucon
+    group: isucon
     remote_src: yes
   ignore_errors: yes
 
@@ -44,7 +46,6 @@
   shell: sudo -u isucon bash -lc "sh setup.sh"
   args:
     chdir: /home/isucon/private_isu/webapp/golang/
-  ignore_errors: yes
 
 - name: isu-go is restarted
   systemd:
