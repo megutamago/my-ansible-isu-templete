@@ -1,0 +1,96 @@
+- name: isu-ruby is disabled
+  systemd:
+    name: isu-ruby
+    state: stopped
+    enabled: false
+  become: yes
+
+- name: isu-go is running
+  systemd:
+    name: isu-go
+    state: started
+    enabled: true
+  become: yes
+
+- name: Git checkout
+  git:
+    repo: https://github.com/megutamago/test-private_isu.git
+    dest: /home/isucon/test-private_isu
+
+- name: Copy
+  copy:
+    src: /home/isucon/private_isu/webapp
+    dest: /home/isucon/private_isu/.bk
+    remote_src: yes
+  ignore_errors: yes
+
+- name: remove
+  file: 
+    path: /home/isucon/private_isu/webapp
+    state: absent
+
+- name: Copy
+  copy:
+    src: /home/isucon/test-private_isu/webapp
+    dest: /home/isucon/private_isu/
+    remote_src: yes
+  ignore_errors: yes
+
+- name: remove
+  file: 
+    path: /home/isucon/test-private_isu
+    state: absent
+
+### Execute as login shell
+- name: setup
+  shell: bash -lc "sh setup.sh"
+  args:
+    chdir: /home/isucon/private_isu/webapp/golang/
+
+- name: isu-go is restarted
+  systemd:
+    name: isu-go
+    state: restarted
+  become: yes
+
+- name: remove
+  file: 
+    path: /var/log/nginx/access.log
+    state: absent
+  become: yes
+
+- name: nginx is restarted
+  systemd:
+    name: nginx
+    state: restarted
+  become: yes
+
+- name: remove
+  file: 
+    path: /var/log/mysql/mysql-slow.sql
+    state: absent
+  become: yes
+
+- name: chmod
+  file: 
+    path: /home/isucon/private_isu/webapp/sql/init.sh
+    mode: '0755'
+  become: yes
+  ignore_errors: yes
+
+#- name: shell
+#  shell: sh /home/isucon/private_isu/webapp/sql/init.sh
+
+- name: mysql is restarted
+  systemd:
+    name: mysql
+    state: restarted
+  become: yes
+
+###
+- name: redis is restarted
+  systemd:
+    name: redis-server
+    state: restarted
+  become: yes
+  ignore_errors: yes

@@ -1,7 +1,0 @@
-- name: Install the package ope
-  apt:
-    name:
-    - iperf3
-    - sysstat
-    - linux-tools-`uname -r`
-    - vnstat
