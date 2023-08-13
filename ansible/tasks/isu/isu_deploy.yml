@@ -14,8 +14,8 @@
 
 - name: Git checkout
   git:
-    repo: https://github.com/megutamago/test-private_isu.git
-    dest: /home/isucon/test-private_isu
+    repo: https://github.com/megutamago/my-ansible-isu-templete.git
+    dest: /home/isucon/my-ansible-isu-templete
 
 - name: Copy
   copy:
@@ -31,14 +31,14 @@
 
 - name: Copy
   copy:
-    src: /home/isucon/test-private_isu/webapp
+    src: /home/isucon/my-ansible-isu-templete/webapp
     dest: /home/isucon/private_isu/
     remote_src: yes
   ignore_errors: yes
 
 - name: remove
   file: 
-    path: /home/isucon/test-private_isu
+    path: /home/isucon/my-ansible-isu-templete
     state: absent
 
 ### Execute as login shell
@@ -87,7 +87,6 @@
     state: restarted
   become: yes
 
-###
 - name: redis is restarted
   systemd:
     name: redis-server
