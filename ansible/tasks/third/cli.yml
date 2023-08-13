@@ -1,0 +1,47 @@
+- name: Install the package ope
+  apt:
+    name:
+    - unzip
+
+# 記事のコードコピペしたため特殊なPlaybook記述をしている ↓のtaskはエラーが出ていていい
+- name: exist awscli v2
+  command: which aws
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+  register: exist_awscli
+  changed_when: false
+  ignore_errors: true
+
+- block:
+  - name: get zip
+    get_url:
+      url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+      dest: "/tmp/awscli-exe-linux-x86_64.zip"
+
+  - name: unarchive zip
+    unarchive:
+      src: /tmp/awscli-exe-linux-x86_64.zip
+      dest: /tmp/
+      copy: no
+
+  - name: install
+    command:
+      cmd: ./aws/install --update
+      chdir: /tmp
+
+  when:
+    exist_awscli.rc != 0
+    or ( version_in_awscli is defined and version_in_awscli.stdout.find(awscli_version) == -1 )
+
+- name: delete awscli files
+  file:
+    path: /tmp/awscli-exe-linux-x86_64.zip
+    state: absent
+
+- name: delete awscli derectory
+  file:
+    path: /tmp/aws
+    state: absent
+
+- name: Execute azurecli
+  shell: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash

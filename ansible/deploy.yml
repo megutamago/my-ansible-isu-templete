@@ -1,0 +1,9 @@
+- name: Test
+  hosts: test
+  gather_facts: yes
+  user: ubuntu
+  max_fail_percentage: 0
+  become: true
+  tasks:
+    - import_tasks : ./tasks/common/common.yml
+    - import_tasks : ./tasks/third/netdata.yml

@@ -1,0 +1,26 @@
+name: 'Ansible'
+on:
+  #push:
+  #  branches:
+  #    - main
+  workflow_dispatch:
+jobs:
+  Ansible:
+    name: "Ansible Job"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: deploy.yml
+          directory: ./ansible
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          inventory: |
+            [isu1]
+            9.9.9.9
+          options: |
+            --inventory .hosts
