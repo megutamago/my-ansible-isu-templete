@@ -20,8 +20,8 @@
 - name: isu
   hosts: isu1
   gather_facts: no
-  user: isucon
+  user: ubuntu
   max_fail_percentage: 0
   tasks:
     - import_tasks : ../tasks/isu/isu_deploy.yml
-    - import_tasks : ../tasks/isu/isu_add.yml
+    #- import_tasks : ../tasks/isu/isu_add.yml
