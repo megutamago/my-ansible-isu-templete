@@ -40,4 +40,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            ls -al
+            sudo mysql -u root -pisuconp isuconp -e "alter table comments add index post_index(post_id);"
+            sudo mysql -u root -pisuconp isuconp -e "alter table posts add index posts_order_idx (created_at DESC);"
+            sudo systemctl restart mysql
+          #  cd /home/isucon/private_isu/webapp/golang/
+          #  bash -lc "go get github.com/redis/go-redis/v8"
+          #  sudo systemctl restart isu-go

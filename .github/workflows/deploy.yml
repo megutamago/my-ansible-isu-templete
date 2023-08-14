@@ -1,0 +1,88 @@
+name: 'Deploy'
+on:
+  #push:
+  #  branches:
+  #    - main
+  workflow_dispatch:
+jobs:
+  Deploy1:
+    name: "Deploy1 Job"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Exe
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ vars.HOST1 }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            git clone https://github.com/megutamago/my-ansible-isu-templete.git /home/isucon/my-ansible-isu-templete
+            rm -rf /home/isucon/private_isu/webapp
+            cp -a /home/isucon/my-ansible-isu-templete/webapp /home/isucon/private_isu/
+            chown -R isucon:isucon /home/isucon/private_isu/webapp
+            rm -rf /home/isucon/my-ansible-isu-templete
+            cd /home/isucon/private_isu/webapp/golang/
+            sudo -u isucon bash -lc "sh setup.sh"
+            sudo systemctl restart isu-go
+            rm -f /var/log/nginx/access.log
+            rm -f /var/log/mysql/mysql-slow.sql
+          #  sh /home/isucon/private_isu/webapp/sql/init.sh
+  Deploy2:
+    name: "Deploy2 Job"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Exe
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ vars.HOST2 }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            git clone https://github.com/megutamago/my-ansible-isu-templete.git /home/isucon/my-ansible-isu-templete
+            rm -rf /home/isucon/private_isu/webapp
+            cp -a /home/isucon/my-ansible-isu-templete/webapp /home/isucon/private_isu/
+            chown -R isucon:isucon /home/isucon/private_isu/webapp
+            rm -rf /home/isucon/my-ansible-isu-templete
+            cd /home/isucon/private_isu/webapp/golang/
+            sudo -u isucon bash -lc "sh setup.sh"
+            sudo systemctl restart isu-go
+            rm -f /var/log/nginx/access.log
+            rm -f /var/log/mysql/mysql-slow.sql
+          #  sh /home/isucon/private_isu/webapp/sql/init.sh
+  Deploy3:
+    name: "Deploy3 Job"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Exe
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ vars.HOST3 }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            git clone https://github.com/megutamago/my-ansible-isu-templete.git /home/isucon/my-ansible-isu-templete
+            rm -rf /home/isucon/private_isu/webapp
+            cp -a /home/isucon/my-ansible-isu-templete/webapp /home/isucon/private_isu/
+            chown -R isucon:isucon /home/isucon/private_isu/webapp
+            rm -rf /home/isucon/my-ansible-isu-templete
+            cd /home/isucon/private_isu/webapp/golang/
+            sudo -u isucon bash -lc "sh setup.sh"
+            sudo systemctl restart isu-go
+            rm -f /var/log/nginx/access.log
+            rm -f /var/log/mysql/mysql-slow.sql
+          #  sh /home/isucon/private_isu/webapp/sql/init.sh
